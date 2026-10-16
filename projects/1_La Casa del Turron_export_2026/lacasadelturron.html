@@ -1,0 +1,263 @@
+Voici le code HTML/CSS complet pour le fichier la-casa-del-turron.html à placer dans votre dossier project/ :
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Casa del Turrón - Victoire Gonzalvez</title>
+    <style>
+        :root {
+            --bg-color: #E6E6E6;
+            --header-bg: #FFFFFF;
+            --text-color: #000000;
+            --font-family: serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--text-color);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo a {
+            font-size: 2.2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: normal;
+        }
+
+        nav {
+            margin-left: auto;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-projects-container {
+            position: relative;
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 420px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--text-color);
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 200;
+        }
+
+        .nav-projects-container:hover .nav-dropdown {
+            display: block;
+        }
+
+        .project-list {
+            list-style: none;
+        }
+
+        .project-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.15);
+            font-size: 1.5rem;
+        }
+
+        .project-list li:last-child {
+            border-bottom: none;
+        }
+
+        .project-list a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 1.5rem;
+        }
+
+        .project-list li:hover {
+            font-style: italic;
+        }
+
+        main {
+            padding: 3rem 2rem;
+        }
+
+        .project-detail {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-detail h2 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-detail .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .carousel {
+            position: relative;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 1rem;
+            color: var(--text-color);
+            user-select: none;
+        }
+
+        .carousel-btn.prev { left: -3.5rem; }
+        .carousel-btn.next { right: -3.5rem; }
+
+        .project-description p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: row; justify-content: space-between; align-items: center; padding: 1rem; }
+            nav { margin-left: auto; gap: 1rem; }
+            nav a { font-size: 1.2rem; }
+            .nav-dropdown { width: 280px; right: 0; }
+            main { padding: 1.5rem 1rem; }
+            .carousel-btn.prev { left: -1rem; }
+            .carousel-btn.next { right: -1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="../index.html">Victoire Gonzalvez</a>
+        </div>
+        <nav>
+            <div class="nav-projects-container">
+                <a href="../index.html" class="active" style="text-decoration: underline;">projects</a>
+                <div class="nav-dropdown">
+                    <ul class="project-list">
+                        <li><a href="./la-casa-del-turron.html"><span>La Casa del Turrón</span> <span>2026</span></a></li>
+                        <li><a href="./coco-sour.html"><span>Coco Sour</span> <span>2025</span></a></li>
+                        <li><a href="./succo-and-cream.html"><span>Succo & Cream</span> <span>2024</span></a></li>
+                        <li><a href="./cake-cannibalism-death.html"><span>Cake, Cannibalism, Death...</span> <span>2024</span></a></li>
+                        <li><a href="./translating-bodies.html"><span>Translating Bodies</span> <span>2023</span></a></li>
+                        <li><a href="./synthesised-blue.html"><span>Synthesised Blue</span> <span>2022</span></a></li>
+                        <li><a href="./get-in-meine-suse.html"><span>Get in meine Süße</span> <span>2021</span></a></li>
+                        <li><a href="./looking-in-on-me.html"><span>Looking in on me...</span> <span>2021</span></a></li>
+                        <li><a href="./joan-glory-peel.html"><span>Joan Glory Peel</span> <span>2021</span></a></li>
+                        <li><a href="./dame-tartine.html"><span>Dame Tartine</span> <span>2020</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="../index.html#notes">notes</a>
+            <a href="../index.html#about">about</a>
+        </nav>
+    </header>
+
+    <main>
+        <article class="project-detail">
+            <h2>La Casa del Turrón (2026)</h2>
+            <div class="subtitle">An installation project blending fiction, materials, and writing workshops.</div>
+
+            <div class="carousel">
+                <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>
+                <img id="carousel-img" src="./1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg" alt="La Casa del Turrón">
+                <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>
+            </div>
+
+            <div class="project-description">
+                <p>Written at the beginning of the residency at Villa Belleville, La Casa del Turrón is a short story resulting from documentary research on the commercial activities of Els Limits, a town on the French-Spanish border, and its culture of erotic clubs, shaped by mass tourism from France to Spain.</p>
+
+                <p>In these spaces, “non-passage” takes shape through surfaces designed to be easily cleaned and to erase all traces of use: linoleum floors, washable plastics, tightly stretched sheets, and materials that return to their original state after each use.</p>
+
+                <p>Starting from this absence of traces, the project reflects on the intimacy surrounding the clients and their activities, as well as on the presences that remain hidden within these spaces.</p>
+
+                <p>Four leather tapestries form the installation, covered with a patina made from grease and pigments developed during the residency. Together, they recreate a fictional club space.</p>
+
+                <p>Within this space, collective writing workshops explored erotic fiction through the experience of “overflow.” Through text and movement, the workshops explored how overflow can disrupt closed or cyclical situations.</p>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        const images = [
+            './1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg',
+            './1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_02.jpg',
+            './1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_03.jpg',
+            './1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_04.jpg',
+            './1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron-03.jpg',
+            './1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron-06.jpg',
+            './1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron-07.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        function updateCarouselImage() {
+            document.getElementById('carousel-img').src = images[currentIndex];
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateCarouselImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateCarouselImage();
+        }
+    </script>
+</body>
+</html>
