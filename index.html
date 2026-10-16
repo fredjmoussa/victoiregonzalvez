@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victoire Gonzalvez</title>
+    <style>
+        :root {
+            --bg-color: #e5e5e5;
+            --text-color: #000000;
+            --font-family: serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            line-height: 1.5;
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--text-color);
+            padding-bottom: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .logo a {
+            font-size: 2.2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: normal;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+        }
+
+        nav a.active, nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Projects List */
+        .projects-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .project-list {
+            list-style: none;
+        }
+
+        .project-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-size: 1.8rem;
+        }
+
+        .project-list li:hover {
+            font-style: italic;
+        }
+
+        .project-preview {
+            width: 100%;
+            max-height: 80vh;
+            object-fit: cover;
+        }
+
+        /* Single Project Detail View */
+        .project-detail {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-detail h2 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-detail .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .carousel {
+            position: relative;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 1rem;
+        }
+
+        .carousel-btn.prev { left: -3rem; }
+        .carousel-btn.next { right: -3rem; }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Notes & Press */
+        .notes-content {
+            max-width: 900px;
+        }
+
+        .notes-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: normal;
+        }
+
+        .note-item {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        /* About / Bio */
+        .about-content {
+            max-width: 700px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            header { flex-direction: column; gap: 1rem; }
+            nav a { margin-left: 0; margin-right: 1.5rem; font-size: 1.2rem; }
+            .projects-layout { grid-template-columns: 1fr; }
+            .project-preview { display: none; }
+            .project-list li { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="#" onclick="showSection('projects')">Victoire Gonzalvez</a>
+        </div>
+        <nav>
+            <a href="#" id="nav-projects" class="active" onclick="showSection('projects')">projects</a>
+            <a href="#" id="nav-notes" onclick="showSection('notes')">notes</a>
+            <a href="#" id="nav-about" onclick="showSection('about')">about</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section Projects -->
+        <section id="projects" class="section active">
+            <div class="projects-layout">
+                <ul class="project-list">
+                    <li onclick="loadProject('La Casa del Turrón', '2026', 'Research and production context description...', ['https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80'])">
+                        <span>La Casa del Turrón</span> <span>2026</span>
+                    </li>
+                    <li onclick="loadProject('Coco Sour', '2025', 'Solo exhibition, Galerie Jean Collet, Vitry-sur-Seine curated by Thomas Lemire.', ['https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80'])">
+                        <span>Coco Sour</span> <span>2025</span>
+                    </li>
+                    <li onclick="loadProject('Succo & Cream', '2024', 'Research residency, Fondation Thalie, Brussels. Research project on carton-pierre...', [
+                        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80'
+                    ])">
+                        <span>Succo & Cream</span> <span>2024</span>
+                    </li>
+                    <li onclick="loadProject('Cake, Cannibalism, Death...', '2024', 'Exploration of domestic rituals and material persistence.', ['https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80'])">
+                        <span>Cake, Cannibalism, Death...</span> <span>2024</span>
+                    </li>
+                    <li onclick="loadProject('Translating Bodies', '2023', 'Installation work on proxy forms and spatial translation.', ['https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=800&q=80'])">
+                        <span>Translating Bodies</span> <span>2023</span>
+                    </li>
+                </ul>
+                <div>
+                    <img id="default-preview" class="project-preview" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Preview">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Single Project Detail (Dynamique) -->
+        <section id="project-detail-section" class="section">
+            <div class="project-detail">
+                <h2 id="detail-title">Title (2024)</h2>
+                <div class="subtitle" id="detail-subtitle">Residency context</div>
+                <div class="carousel">
+                    <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>
+                    <img id="carousel-img" src="" alt="Project Image">
+                    <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>
+                </div>
+                <div class="project-description" id="detail-desc">
+                    Description text goes here.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Notes & Press -->
+        <section id="notes" class="section">
+            <div class="notes-content">
+                <h3>Text about & press</h3>
+                <div class="note-item">
+                    <strong>Zone de Flou</strong>, by Alix La Chapelle, for the residency restitution Faire le Pli, Villa Belleville, December 2025.
+                </div>
+                <div class="note-item">
+                    <strong>Sueur & Sucre</strong>, by Thomas Lemir, for the solo exhibition Coco Sour, Galerie municipale Jean-Collet, February 2025.
+                </div>
+                <div class="note-item">
+                    <strong>Comfort Food</strong>, by Maxim Gasnier, article on Bred in Art, Steidz Magazine, Issue No. 9, 2024.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section About -->
+        <section id="about" class="section">
+            <div class="about-content">
+                <p>Victoire Gonzalvez (b. 1997) is an artist based in Paris. Her practice intertwines installation, text, and performance, slitting open interstitial spaces inhabited by personal and collective anecdotes, missteps, and spillover.</p>
+                <p>She studied at the École des Arts Décoratifs (Paris) and was a Weissenhof Fellow (2022–23) at the Staatliche Akademie der Bildenden Künste Stuttgart.</p>
+                <p>She is a 2–12 residency fellow for 2026 at the Cité internationale des arts in Paris.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let currentImages = [];
+        let currentIndex = 0;
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            if(sectionId !== 'project-detail-section') {
+                document.getElementById('nav-' + sectionId).classList.add('active');
+            }
+        }
+
+        function loadProject(title, year, description, images) {
+            currentImages = images;
+            currentIndex = 0;
+            document.getElementById('detail-title').innerText = `${title} (${year})`;
+            document.getElementById('detail-subtitle').innerText = description;
+            document.getElementById('detail-desc').innerText = description;
+            updateCarouselImage();
+            
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById('project-detail-section').classList.add('active');
+        }
+
+        function updateCarouselImage() {
+            if(currentImages.length > 0) {
+                document.getElementById('carousel-img').src = currentImages[currentIndex];
+            }
+        }
+
+        function nextImage() {
+            if(currentImages.length > 0) {
+                currentIndex = (currentIndex + 1) % currentImages.length;
+                updateCarouselImage();
+            }
+        }
+
+        function prevImage() {
+            if(currentImages.length > 0) {
+                currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+                updateCarouselImage();
+            }
+        }
+    </script>
+</body>
+</html>
