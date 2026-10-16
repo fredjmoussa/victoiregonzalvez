@@ -1,257 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victoire Gonzalvez</title>
-     <style>
-    :root {
-        --bg-color: #E6E6E6;
-        --header-bg: #FFFFFF;
-        --text-color: #000000;
-        --font-family: serif;
-    }
+    <style>
+        :root {
+            --bg-color: #E6E6E6;
+            --header-bg: #FFFFFF;
+            --text-color: #000000;
+            --font-family: serif;
+        }
 
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        font-family: var(--font-family);
-        line-height: 1.5;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            line-height: 1.5;
+        }
 
-    header {
-        background-color: var(--header-bg);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--text-color);
-        padding: 1.5rem 2rem;
-    }
+        /* Header fixe avec fond blanc */
+        header {
+            background-color: var(--header-bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--text-color);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    .logo a {
-        font-size: 2.2rem;
-        text-decoration: none;
-        color: var(--text-color);
-        font-weight: normal;
-    }
+        .logo a {
+            font-size: 2.2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: normal;
+        }
 
-    /* Alignment à droite du menu de navigation */
-    nav {
-        margin-left: auto;
-        display: flex;
-        gap: 2rem;
-    }
+        /* Navigation alignée à droite */
+        nav {
+            margin-left: auto;
+            display: flex;
+            gap: 2rem;
+        }
 
-    nav a {
-        text-decoration: none;
-        color: var(--text-color);
-        font-size: 1.5rem;
-    }
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+        }
 
-    nav a.active, nav a:hover {
-        text-decoration: underline;
-    }
+        nav a.active, nav a:hover {
+            text-decoration: underline;
+        }
 
-    main {
-        padding: 2rem;
-    }
+        main {
+            padding: 2rem;
+        }
 
-    /* Sections */
-    .section {
-        display: none;
-    }
+        .section {
+            display: none;
+        }
 
-    .section.active {
-        display: block;
-    }
+        .section.active {
+            display: block;
+        }
 
-    /* Projects List Layout */
-    .projects-layout {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: start;
-    }
+        /* Galerie d'accueil */
+        .home-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-    .project-list {
-        list-style: none;
-    }
+        .home-gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    .project-list li {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        padding: 0.8rem 0;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        cursor: pointer;
-        font-size: 1.8rem;
-    }
+        /* SECTION PROJECTS : Conteneur superposé */
+        .projects-container {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            min-height: 80vh;
+        }
 
-    .project-list li:hover {
-        font-style: italic;
-    }
+        /* Image d'arrière-plan */
+        .projects-bg-image {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: cover;
+            display: block;
+        }
 
-    .project-preview {
-        width: 100%;
-        max-height: 80vh;
-        object-fit: cover;
-    }
+        /* Boîte encadrée superposée (Overlay Box) */
+        .projects-overlay-box {
+            position: absolute;
+            top: 0;
+            right: 5%;
+            width: 480px;
+            max-width: 90%;
+            background-color: var(--bg-color);
+            border: 1px solid var(--text-color);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            z-index: 10;
+        }
 
-    /* Single Project Detail View */
-    .project-detail {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+        .project-list {
+            list-style: none;
+        }
 
-    .project-detail h2 {
-        font-size: 1.8rem;
-        font-weight: normal;
-        margin-bottom: 0.5rem;
-    }
+        .project-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.15);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
 
-    .project-detail .subtitle {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-    }
+        .project-list li:last-child {
+            border-bottom: none;
+        }
 
-    .carousel {
-        position: relative;
-        margin-bottom: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        .project-list li:hover {
+            font-style: italic;
+        }
 
-    .carousel img {
-        max-width: 100%;
-        max-height: 70vh;
-        object-fit: contain;
-    }
+        /* Vue détaillée d'un projet */
+        .project-detail {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    .carousel-btn {
-        position: absolute;
-        background: none;
-        border: none;
-        font-size: 2rem;
-        cursor: pointer;
-        padding: 1rem;
-    }
+        .project-detail h2 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
+        }
 
-    .carousel-btn.prev { left: -3rem; }
-    .carousel-btn.next { right: -3rem; }
+        .project-detail .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
 
-    .project-description {
-        font-size: 1.1rem;
-        line-height: 1.6;
-    }
+        .carousel {
+            position: relative;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    /* Notes & Press */
-    .notes-content {
-        max-width: 900px;
-    }
+        .carousel img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
 
-    .notes-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-        font-weight: normal;
-    }
+        .carousel-btn {
+            position: absolute;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 1rem;
+        }
 
-    .note-item {
-        margin-bottom: 2rem;
-        font-size: 1.2rem;
-    }
+        .carousel-btn.prev { left: -3rem; }
+        .carousel-btn.next { right: -3rem; }
 
-    /* About / Bio */
-    .about-content {
-        max-width: 700px;
-        font-size: 1.2rem;
-        line-height: 1.8;
-    }
+        /* Notes & About */
+        .notes-content, .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
 
-    .about-content p {
-        margin-bottom: 1.5rem;
-    }
+        .note-item { margin-bottom: 2rem; }
+        .about-content p { margin-bottom: 1.5rem; }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-        nav { margin-left: 0; gap: 1.5rem; }
-        nav a { font-size: 1.2rem; }
-        .projects-layout { grid-template-columns: 1fr; }
-        .project-preview { display: none; }
-        .project-list li { font-size: 1.3rem; }
-    }
-</style>
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1rem; }
+            nav { margin-left: 0; gap: 1.5rem; }
+            nav a { font-size: 1.2rem; }
+            main { padding: 1rem; }
+
+            .projects-overlay-box {
+                position: relative;
+                right: auto;
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+
+            .project-list li { font-size: 1.2rem; }
+            .carousel-btn.prev { left: -1rem; }
+            .carousel-btn.next { right: -1rem; }
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <div class="logo">
-            <a href="#" onclick="showSection('projects')">Victoire Gonzalvez</a>
+            <a href="#" onclick="showSection('home')">Victoire Gonzalvez</a>
         </div>
         <nav>
-            <a href="#" id="nav-projects" class="active" onclick="showSection('projects')">projects</a>
+            <a href="#" id="nav-projects" onclick="showSection('projects')">projects</a>
             <a href="#" id="nav-notes" onclick="showSection('notes')">notes</a>
             <a href="#" id="nav-about" onclick="showSection('about')">about</a>
         </nav>
     </header>
 
     <main>
-        <!-- Section Projects -->
-        <section id="projects" class="section active">
-            <div class="projects-layout">
-                <ul class="project-list">
-                    <li onclick="loadProject('La Casa del Turrón', '2026', 'Research and production context description...', ['https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80'])">
-                        <span>La Casa del Turrón</span> <span>2026</span>
-                    </li>
-                    <li onclick="loadProject('Coco Sour', '2025', 'Solo exhibition, Galerie Jean Collet, Vitry-sur-Seine curated by Thomas Lemire.', ['https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80'])">
-                        <span>Coco Sour</span> <span>2025</span>
-                    </li>
-                    <li onclick="loadProject('Succo & Cream', '2024', 'Research residency, Fondation Thalie, Brussels. Research project on carton-pierre...', [
-                        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80'
-                    ])">
-                        <span>Succo & Cream</span> <span>2024</span>
-                    </li>
-                    <li onclick="loadProject('Cake, Cannibalism, Death...', '2024', 'Exploration of domestic rituals and material persistence.', ['https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80'])">
-                        <span>Cake, Cannibalism, Death...</span> <span>2024</span>
-                    </li>
-                    <li onclick="loadProject('Translating Bodies', '2023', 'Installation work on proxy forms and spatial translation.', ['https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=800&q=80'])">
-                        <span>Translating Bodies</span> <span>2023</span>
-                    </li>
-                </ul>
-                <div>
-                    <img id="default-preview" class="project-preview" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Preview">
-                </div>
+        <!-- Home Gallery -->
+        <section id="home" class="section active">
+            <div class="home-gallery">
+                <img src="./home_Page/image1.jpg" alt="Work 1">
+                <img src="./home_Page/image2.jpg" alt="Work 2">
+                <img src="./home_Page/image3.jpg" alt="Work 3">
             </div>
         </section>
 
-        <!-- Section Single Project Detail (Dynamique) -->
+        <!-- Projects Section avec case superposée -->
+        <section id="projects" class="section">
+            <div class="projects-container">
+                
+                <!-- Boîte encadrée des projets superposée -->
+                <div class="projects-overlay-box">
+                    <ul class="project-list">
+                        <li onclick="loadProject('La Casa del Turrón', '2026', 'Description...', ['./section_Projects/la-casa-del-turron/1.jpg'])">
+                            <span>La Casa del Turrón</span> <span>2026</span>
+                        </li>
+                        <li onclick="loadProject('Coco Sour', '2025', 'Solo exhibition, Galerie Jean Collet...', ['./section_Projects/coco-sour/1.jpg', './section_Projects/coco-sour/2.jpg'])">
+                            <span>Coco Sour</span> <span>2025</span>
+                        </li>
+                        <li onclick="loadProject('Succo & Cream', '2024', 'Research residency, Fondation Thalie...', ['./section_Projects/succo-and-cream/1.jpg'])">
+                            <span>Succo & Cream</span> <span>2024</span>
+                        </li>
+                        <li onclick="loadProject('Cake, Cannibalism, Death...', '2024', 'Description...', ['./section_Projects/cake-cannibalism/1.jpg'])">
+                            <span>Cake, Cannibalism, Death...</span> <span>2024</span>
+                        </li>
+                        <li onclick="loadProject('Translating Bodies', '2023', 'Description...', ['./section_Projects/translating-bodies/1.jpg'])">
+                            <span>Translating Bodies</span> <span>2023</span>
+                        </li>
+                        <li onclick="loadProject('Synthesised Blue', '2022', 'Description...', ['./section_Projects/synthesised-blue/1.jpg'])">
+                            <span>Synthesised Blue</span> <span>2022</span>
+                        </li>
+                        <li onclick="loadProject('Get in meine Süße', '2021', 'Description...', ['./section_Projects/get-in-meine-suse/1.jpg'])">
+                            <span>Get in meine Süße</span> <span>2021</span>
+                        </li>
+                        <li onclick="loadProject('Looking in on me...', '2021', 'Description...', ['./section_Projects/looking-in-on-me/1.jpg'])">
+                            <span>Looking in on me...</span> <span>2021</span>
+                        </li>
+                        <li onclick="loadProject('Joan Glory Peel', '2021', 'Description...', ['./section_Projects/joan-glory-peel/1.jpg'])">
+                            <span>Joan Glory Peel</span> <span>2021</span>
+                        </li>
+                        <li onclick="loadProject('Dame Tartine', '2020', 'Description...', ['./section_Projects/dame-tartine/1.jpg'])">
+                            <span>Dame Tartine</span> <span>2020</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Image de fond du menu projets -->
+                <img class="projects-bg-image" src="./section_Projects/home-project-bg.jpg" alt="Background Project">
+
+            </div>
+        </section>
+
+        <!-- Vue détaillée dynamique d'un projet -->
         <section id="project-detail-section" class="section">
             <div class="project-detail">
                 <h2 id="detail-title">Title (2024)</h2>
-                <div class="subtitle" id="detail-subtitle">Residency context</div>
+                <div class="subtitle" id="detail-subtitle">Context</div>
                 <div class="carousel">
                     <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>
                     <img id="carousel-img" src="" alt="Project Image">
                     <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>
                 </div>
                 <div class="project-description" id="detail-desc">
-                    Description text goes here.
+                    Description...
                 </div>
             </div>
         </section>
 
-        <!-- Section Notes & Press -->
+        <!-- Section Notes -->
         <section id="notes" class="section">
             <div class="notes-content">
-                <h3>Text about & press</h3>
+                <h3 style="margin-bottom: 2rem; font-weight: normal;">Text about & press</h3>
                 <div class="note-item">
                     <strong>Zone de Flou</strong>, by Alix La Chapelle, for the residency restitution Faire le Pli, Villa Belleville, December 2025.
                 </div>
@@ -283,8 +337,9 @@
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
             
             document.getElementById(sectionId).classList.add('active');
-            if(sectionId !== 'project-detail-section') {
-                document.getElementById('nav-' + sectionId).classList.add('active');
+            if (sectionId !== 'home' && sectionId !== 'project-detail-section') {
+                const activeNav = document.getElementById('nav-' + sectionId);
+                if (activeNav) activeNav.classList.add('active');
             }
         }
 
@@ -301,20 +356,20 @@
         }
 
         function updateCarouselImage() {
-            if(currentImages.length > 0) {
+            if (currentImages.length > 0) {
                 document.getElementById('carousel-img').src = currentImages[currentIndex];
             }
         }
 
         function nextImage() {
-            if(currentImages.length > 0) {
+            if (currentImages.length > 0) {
                 currentIndex = (currentIndex + 1) % currentImages.length;
                 updateCarouselImage();
             }
         }
 
         function prevImage() {
-            if(currentImages.length > 0) {
+            if (currentImages.length > 0) {
                 currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
                 updateCarouselImage();
             }
