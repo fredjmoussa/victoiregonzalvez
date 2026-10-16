@@ -50,6 +50,7 @@
             margin-left: auto;
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
         nav a {
@@ -60,6 +61,33 @@
 
         nav a.active, nav a:hover {
             text-decoration: underline;
+        }
+
+        /* Soulignement du logo quand on est sur Home */
+        .logo a.active-home {
+            text-decoration: underline;
+        }
+
+        /* Conteneur et menu déroulant pour Projects */
+        .nav-projects-container {
+            position: relative;
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 420px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--text-color);
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 200;
+        }
+
+        .nav-projects-container:hover .nav-dropdown {
+            display: block;
         }
 
         main {
@@ -198,9 +226,10 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            header { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1rem; }
-            nav { margin-left: 0; gap: 1.5rem; }
+            header { flex-direction: row; justify-content: space-between; align-items: center; padding: 1rem; }
+            nav { margin-left: auto; gap: 1rem; }
             nav a { font-size: 1.2rem; }
+            .nav-dropdown { width: 280px; right: 0; }
             main { padding: 1rem; }
 
             .projects-overlay-box {
@@ -221,10 +250,26 @@
 
     <header>
         <div class="logo">
-            <a href="#" onclick="showSection('home')">Victoire Gonzalvez</a>
+            <a href="#" id="logo-home" class="active-home" onclick="showSection('home')">Victoire Gonzalvez</a>
         </div>
         <nav>
-            <a href="#" id="nav-projects" onclick="showSection('projects')">projects</a>
+            <div class="nav-projects-container">
+                <a href="#" id="nav-projects" onclick="showSection('projects')">projects</a>
+                <div class="nav-dropdown">
+                    <ul class="project-list">
+                        <li><a href="./project/la-casa-del-turron.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-width; width:100%;"><span>La Casa del Turrón</span> <span>2026</span></a></li>
+                        <li><a href="./project/coco-sour.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Coco Sour</span> <span>2025</span></a></li>
+                        <li><a href="./project/succo-and-cream.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Succo & Cream</span> <span>2024</span></a></li>
+                        <li><a href="./project/cake-cannibalism-death.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Cake, Cannibalism, Death...</span> <span>2024</span></a></li>
+                        <li><a href="./project/translating-bodies.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Translating Bodies</span> <span>2023</span></a></li>
+                        <li><a href="./project/synthesised-blue.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Synthesised Blue</span> <span>2022</span></a></li>
+                        <li><a href="./project/get-in-meine-suse.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Get in meine Süße</span> <span>2021</span></a></li>
+                        <li><a href="./project/looking-in-on-me.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Looking in on me...</span> <span>2021</span></a></li>
+                        <li><a href="./project/joan-glory-peel.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Joan Glory Peel</span> <span>2021</span></a></li>
+                        <li><a href="./project/dame-tartine.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Dame Tartine</span> <span>2020</span></a></li>
+                    </ul>
+                </div>
+            </div>
             <a href="#" id="nav-notes" onclick="showSection('notes')">notes</a>
             <a href="#" id="nav-about" onclick="showSection('about')">about</a>
         </nav>
@@ -354,6 +399,13 @@ the upholstery of a bench.
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
             
+            const logoEl = document.getElementById('logo-home');
+            if (sectionId === 'home') {
+                logoEl.classList.add('active-home');
+            } else {
+                logoEl.classList.remove('active-home');
+            }
+
             document.getElementById(sectionId).classList.add('active');
             if (sectionId !== 'home' && sectionId !== 'project-detail-section') {
                 const activeNav = document.getElementById('nav-' + sectionId);
