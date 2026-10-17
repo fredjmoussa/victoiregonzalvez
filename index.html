@@ -30,9 +30,9 @@
             background-color: var(--header-bg);
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end; /* Aligne le contenu vers le bas */
             border-bottom: 1px solid var(--text-color);
-            padding: 1.5rem 2rem;
+            padding: 1.2rem 2rem 0.8rem 2rem; /* Réduit le rembourrage du bas */
             position: sticky;
             top: 0;
             z-index: 100;
@@ -50,7 +50,8 @@
             margin-left: auto;
             display: flex;
             gap: 2rem;
-            align-items: center;
+            align-items: flex-end; /* Aligne la navigation vers le bas */
+            padding-bottom: 0.2rem; /* Ajustement fin pour l'alignement sur la ligne de base */
         }
 
         nav a {
@@ -257,7 +258,7 @@
                 <a href="#" id="nav-projects" onclick="showSection('projects')">projects</a>
                 <div class="nav-dropdown">
                     <ul class="project-list">
-                        <li><a href="./project/projects/1_La Casa del Turron_export_2026/lacasadelturron.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-width; width:100%;"><span>La Casa del Turrón</span> <span>2026</span></a></li>
+                        <li><a href="./project/lacasadelturron.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-width; width:100%;"><span>La Casa del Turrón</span> <span>2026</span></a></li>
                         <li><a href="./project/coco-sour.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Coco Sour</span> <span>2025</span></a></li>
                         <li><a href="./project/succo-and-cream.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Succo & Cream</span> <span>2024</span></a></li>
                         <li><a href="./project/cake-cannibalism-death.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Cake, Cannibalism, Death...</span> <span>2024</span></a></li>
@@ -292,7 +293,7 @@
                 <!-- Boîte encadrée des projets superposée -->
                 <div class="projects-overlay-box">
                     <ul class="project-list">
-                        <li onclick="loadProject('La Casa del Turrón', '2026', 'Description...', ['./section_Projects/la-casa-del-turron/1.jpg'])">
+                        <li onclick="loadProject('La Casa del Turrón', '2026', 'Description...', ['./section_Projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg'])">
                             <span>La Casa del Turrón</span> <span>2026</span>
                         </li>
                         <li onclick="loadProject('Coco Sour', '2025', 'Solo exhibition, Galerie Jean Collet...', ['./section_Projects/coco-sour/1.jpg', './section_Projects/coco-sour/2.jpg'])">
@@ -356,7 +357,7 @@ The plastic squeaks with every movement. I wish I could
 stretch further because everything keeps overflowing.
 À force de prier et de vivre d’espoir, to clear the fog.
 Sometimes I really wonder what I am looking for. Café-
-cigarette on the quay at Ruisbroek, a flash on your shirt
+cigarette on the quay at<a href="#" onclick="showSection('ruisbroek'); return false;" style="font-weight: bold; color: inherit; text-decoration: underline;">Ruisbroek</a>, a flash on your shirt
 at first sight, a straight pause in short sleeves letting the
 air circulate along your back. Blue scales on a dry curve. A
 bottle of sangria shaped like a penis................................
@@ -379,6 +380,27 @@ the upholstery of a bench.
                 </div>
             </div>
         </section>
+
+        <!-- NOUVELLE SECTION RUISBROEK -->
+<section id="ruisbroek" class="section">
+    <div class="notes-content" style="position: relative;">
+        <div style="text-align: right; font-size: 1.2rem; margin-bottom: 2rem;">25.05.24</div>
+        <div style="font-style: italic; margin-bottom: 1.5rem;">Street view</div>
+        <p style="margin-bottom: 1rem;">
+            1. Avant-cœur et papier de soie, ou packaging affectueux à déballer.<br>
+            Pellicule transparente qui donne de la valeur, voile de motifs, Papier peint de chambre infantile.<br>
+            — Je suis un petit dos B monté sur un bonnet C. ~
+        </p>
+        <p style="margin-bottom: 1rem;">
+            2. Aujourd’hui j’ai été sage, je peux avoir une glace. Froide, au lait, parfum coco<br>
+            Café-clope sur le quai de Ruisbroek. Flash sur sa chemise au premier regard. Straight-pause en manches-courtes qui fait circuler l’air dans le dos.<br>
+            Dragon façon bouteille de Sky, ou Gin. Des écailles bleues sur courbe sèche.<br>
+            Retour des guerriers.<br>
+            Pour l’encas une barquette de nems snackés, cuisson crispy.<br>
+            Sriracha aux lèvres. Fin des combats.
+        </p>
+    </div>
+</section>
 
         <!-- Section About -->
         <section id="about" class="section">
