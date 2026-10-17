@@ -225,6 +225,12 @@
         .note-item { margin-bottom: 2rem; }
         .about-content p { margin-bottom: 1.5rem; }
 
+        .project-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-top: 1.5rem;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             header { flex-direction: row; justify-content: space-between; align-items: center; padding: 1rem; }
@@ -363,15 +369,13 @@
         <section id="project-detail-section" class="section">
             <div class="project-detail">
                 <h2 id="detail-title">Title (2024)</h2>
-                <div class="subtitle" id="detail-subtitle">Context</div>
+                <div class="subtitle" id="detail-subtitle">Short intro above</div>
                 <div class="carousel">
                     <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>
                     <img id="carousel-img" src="" alt="Project Image">
                     <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>
                 </div>
-                <div class="project-description" id="detail-desc">
-                    Description...
-                </div>
+                <div class="project-description" id="detail-desc">Full text below</div>
             </div>
         </section>
 
@@ -471,17 +475,17 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        function loadProject(title, year, description, images) {
-            currentImages = images;
-            currentIndex = 0;
-            document.getElementById('detail-title').innerText = `${title} (${year})`;
-            document.getElementById('detail-subtitle').innerText = description;
-            document.getElementById('detail-desc').innerText = description;
-            updateCarouselImage();
+        function loadProject(title, year, shortIntro, fullDescription, images) {
+                currentImages = images;
+                currentIndex = 0;
+                document.getElementById('detail-title').innerText = `${title} (${year})`;
+                document.getElementById('detail-subtitle').innerText = shortIntro;
+                document.getElementById('detail-desc').innerText = fullDescription;
+                updateCarouselImage();
             
-            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById('project-detail-section').classList.add('active');
-        }
+                document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+                document.getElementById('project-detail-section').classList.add('active');
+            }
 
         function updateCarouselImage() {
             if (currentImages.length > 0) {
