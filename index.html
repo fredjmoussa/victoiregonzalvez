@@ -414,6 +414,15 @@ the upholstery of a bench.
     </main>
 
     <script>
+
+    // PORTFOLIO
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.location.href.toLowerCase().includes('portfolio')) {
+        // Redirige vers le PDF sur GitHub qui s'ouvrira avec le lecteur par défaut du navigateur
+        window.location.href = window.location.origin + '/Portfolio_EN©VICTOIRE_GONZALVEZ.pdf';
+    }
+});
+
         let currentImages = [];
         let currentIndex = 0;
 
