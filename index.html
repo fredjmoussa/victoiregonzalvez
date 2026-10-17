@@ -258,16 +258,36 @@
                 <a href="#" id="nav-projects" onclick="showSection('projects')">projects</a>
                 <div class="nav-dropdown">
                     <ul class="project-list">
-                        <li><a href="./project/lacasadelturron.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-width; width:100%;"><span>La Casa del Turrón</span> <span>2026</span></a></li>
-                        <li><a href="./project/coco-sour.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Coco Sour</span> <span>2025</span></a></li>
-                        <li><a href="./project/succo-and-cream.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Succo & Cream</span> <span>2024</span></a></li>
-                        <li><a href="./project/cake-cannibalism-death.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Cake, Cannibalism, Death...</span> <span>2024</span></a></li>
-                        <li><a href="./project/translating-bodies.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Translating Bodies</span> <span>2023</span></a></li>
-                        <li><a href="./project/synthesised-blue.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Synthesised Blue</span> <span>2022</span></a></li>
-                        <li><a href="./project/get-in-meine-suse.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Get in meine Süße</span> <span>2021</span></a></li>
-                        <li><a href="./project/looking-in-on-me.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Looking in on me...</span> <span>2021</span></a></li>
-                        <li><a href="./project/joan-glory-peel.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Joan Glory Peel</span> <span>2021</span></a></li>
-                        <li><a href="./project/dame-tartine.html" style="text-decoration:none; color:inherit; display:flex; justify-content:space-between; width:100%;"><span>Dame Tartine</span> <span>2020</span></a></li>
+                        <li onclick="loadProject('La Casa del Turrón', '2026', 'Description...', ['./section_Projects/1_La%20Casa%20del%20Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg'])">
+                            <span>La Casa del Turrón</span> <span>2026</span>
+                        </li>
+                        <li onclick="loadProject('Coco Sour', '2025', 'Solo exhibition, Galerie Jean Collet...', ['./section_Projects/coco-sour/1.jpg', './section_Projects/coco-sour/2.jpg'])">
+                            <span>Coco Sour</span> <span>2025</span>
+                        </li>
+                        <li onclick="loadProject('Succo & Cream', '2024', 'Research residency, Fondation Thalie...', ['./section_Projects/succo-and-cream/1.jpg'])">
+                            <span>Succo & Cream</span> <span>2024</span>
+                        </li>
+                        <li onclick="loadProject('Cake, Cannibalism, Death...', '2024', 'Description...', ['./section_Projects/cake-cannibalism/1.jpg'])">
+                            <span>Cake, Cannibalism, Death...</span> <span>2024</span>
+                        </li>
+                        <li onclick="loadProject('Translating Bodies', '2023', 'Description...', ['./section_Projects/translating-bodies/1.jpg'])">
+                            <span>Translating Bodies</span> <span>2023</span>
+                        </li>
+                        <li onclick="loadProject('Synthesised Blue', '2022', 'Description...', ['./section_Projects/synthesised-blue/1.jpg'])">
+                            <span>Synthesised Blue</span> <span>2022</span>
+                        </li>
+                        <li onclick="loadProject('Get in meine Süße', '2021', 'Description...', ['./section_Projects/get-in-meine-suse/1.jpg'])">
+                            <span>Get in meine Süße</span> <span>2021</span>
+                        </li>
+                        <li onclick="loadProject('Looking in on me...', '2021', 'Description...', ['./section_Projects/looking-in-on-me/1.jpg'])">
+                            <span>Looking in on me...</span> <span>2021</span>
+                        </li>
+                        <li onclick="loadProject('Joan Glory Peel', '2021', 'Description...', ['./section_Projects/joan-glory-peel/1.jpg'])">
+                            <span>Joan Glory Peel</span> <span>2021</span>
+                        </li>
+                        <li onclick="loadProject('Dame Tartine', '2020', 'Description...', ['./section_Projects/dame-tartine/1.jpg'])">
+                            <span>Dame Tartine</span> <span>2020</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -293,7 +313,7 @@
                 <!-- Boîte encadrée des projets superposée -->
                 <div class="projects-overlay-box">
                     <ul class="project-list">
-                        <li onclick="loadProject('La Casa del Turrón', '2026', 'Description...', ['./section_Projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg'])">
+                        <li onclick="loadProject('La Casa del Turrón', '2026', 'Description...', ['./section_Projects/1_La%20Casa%20del%20Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg'])">
                             <span>La Casa del Turrón</span> <span>2026</span>
                         </li>
                         <li onclick="loadProject('Coco Sour', '2025', 'Solo exhibition, Galerie Jean Collet...', ['./section_Projects/coco-sour/1.jpg', './section_Projects/coco-sour/2.jpg'])">
@@ -357,7 +377,7 @@ The plastic squeaks with every movement. I wish I could
 stretch further because everything keeps overflowing.
 À force de prier et de vivre d’espoir, to clear the fog.
 Sometimes I really wonder what I am looking for. Café-
-cigarette on the quay at<a href="#" onclick="showSection('ruisbroek'); return false;" style="font-weight: bold; color: inherit; text-decoration: underline;">Ruisbroek</a>, a flash on your shirt
+cigarette on the quay at <a href="#" onclick="showSection('ruisbroek'); return false;" style="font-weight: bold; color: inherit; text-decoration: underline;">Ruisbroek</a>, a flash on your shirt
 at first sight, a straight pause in short sleeves letting the
 air circulate along your back. Blue scales on a dry curve. A
 bottle of sangria shaped like a penis................................
