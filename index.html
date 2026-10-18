@@ -25,17 +25,26 @@
             line-height: 1.5;
         }
 
-        /* Header fixe avec fond blanc */
+      /* Header fixe ajusté */
         header {
             background-color: var(--header-bg);
             display: flex;
             justify-content: space-between;
-            align-items: flex-end; /* Aligne le contenu vers le bas */
+            align-items: flex-end; /* Garde le logo en bas */
             border-bottom: 1px solid var(--text-color);
-            padding: 1.2rem 2rem 0.8rem 2rem; /* Réduit le rembourrage du bas */
+            padding: 1.2rem 2rem 0.8rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
+        }
+
+        /* Navigation alignée à droite et descendue d'une ligne */
+        nav {
+            margin-left: auto;
+            display: flex;
+            gap: 2rem; /* Conserve l'espacement initial entre projects, notes, about */
+            align-items: flex-end;
+            margin-bottom: -0.5rem; /* Descend la navigation d'une ligne par rapport à Victoire Gonzalvez */
         }
 
         .logo a {
@@ -43,15 +52,6 @@
             text-decoration: none;
             color: var(--text-color);
             font-weight: normal;
-        }
-
-        /* Navigation alignée à droite */
-        nav {
-            margin-left: auto;
-            display: flex;
-            gap: 2rem;
-            align-items: flex-end; /* Aligne la navigation vers le bas */
-            padding-bottom: 0.2rem; /* Ajustement fin pour l'alignement sur la ligne de base */
         }
 
         nav a {
@@ -369,12 +369,19 @@
             <div class="project-detail">
                 <h2 id="detail-title">Title (2024)</h2>
                 <div class="subtitle" id="detail-subtitle">Short intro above</div>
+                
+                <!-- Première moitié du texte -->
+                <div class="project-description" id="detail-desc-1"></div>
+                
+                <!-- Carrousel d'images au milieu -->
                 <div class="carousel">
                     <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>
                     <img id="carousel-img" src="" alt="Project Image">
                     <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>
                 </div>
-                <div class="project-description" id="detail-desc">Full text below</div>
+
+                <!-- Seconde moitié du texte -->
+                <div class="project-description" id="detail-desc-2"></div>
             </div>
         </section>
 
@@ -475,7 +482,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         function loadProject(title, year, shortIntro, fullDescription, images) {
-            // Si images n'est pas passé en 5e argument (cas où 4 arguments seulement sont fournis)
+            // Gestion de la compatibilité selon le nombre d'arguments passés
             if (Array.isArray(fullDescription)) {
                 images = fullDescription;
                 fullDescription = shortIntro;
@@ -486,7 +493,21 @@ window.addEventListener('DOMContentLoaded', () => {
             currentIndex = 0;
             document.getElementById('detail-title').innerText = `${title} (${year})`;
             document.getElementById('detail-subtitle').innerText = shortIntro || '';
-            document.getElementById('detail-desc').innerText = fullDescription || '';
+
+            // Séparation du texte en deux moitiés au milieu des phrases
+            const text = fullDescription || '';
+            const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+            
+            if (sentences.length > 1) {
+                const midIndex = Math.ceil(sentences.length / 2);
+                document.getElementById('detail-desc-1').innerText = sentences.slice(0, midIndex).join(' ');
+                document.getElementById('detail-desc-2').innerText = sentences.slice(midIndex).join(' ');
+            } else {
+                // Si le texte est très court ou ne contient qu'une phrase
+                document.getElementById('detail-desc-1').innerText = text;
+                document.getElementById('detail-desc-2').innerText = '';
+            }
+
             updateCarouselImage();
         
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
