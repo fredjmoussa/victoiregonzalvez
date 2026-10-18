@@ -25,12 +25,12 @@
             line-height: 1.5;
         }
 
-      /* Header fixe ajusté */
+      /* Header sur deux lignes avec alignement à droite de la navigation */
         header {
             background-color: var(--header-bg);
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end; /* Garde le logo en bas */
+            flex-direction: column; /* Place la navigation en dessous du titre en desktop et mobile */
+            align-items: stretch;
             border-bottom: 1px solid var(--text-color);
             padding: 1.2rem 2rem 0.8rem 2rem;
             position: sticky;
@@ -38,13 +38,18 @@
             z-index: 100;
         }
 
-        /* Navigation alignée à droite et descendue d'une ligne */
-        nav {
-            margin-left: auto;
+        .logo {
             display: flex;
-            gap: 2rem; /* Conserve l'espacement initial entre projects, notes, about */
-            align-items: flex-end;
-            margin-bottom: -0.5rem; /* Descend la navigation d'une ligne par rapport à Victoire Gonzalvez */
+            justify-content: flex-start;
+            margin-bottom: 0.5rem; /* Espace sous Victoire Gonzalvez */
+        }
+
+        /* Navigation située sur la ligne du dessous, alignée à droite */
+        nav {
+            display: flex;
+            justify-content: flex-end; /* Alignement à droite */
+            gap: 3.5rem; /* Espacement augmenté entre projects, notes et about */
+            align-items: center;
         }
 
         .logo a {
@@ -233,8 +238,8 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            header { flex-direction: row; justify-content: space-between; align-items: center; padding: 1rem; }
-            nav { margin-left: auto; gap: 1rem; }
+            header { padding: 1rem; }
+            nav { gap: 1.5rem; }
             nav a { font-size: 1.2rem; }
             .nav-dropdown { width: 280px; right: 0; }
             main { padding: 1rem; }
@@ -372,6 +377,7 @@
                 
                 <!-- Première moitié du texte -->
                 <div class="project-description" id="detail-desc-1"></div>
+
                 
                 <!-- Carrousel d'images au milieu -->
                 <div class="carousel">
