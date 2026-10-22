@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victoire Gonzalvez</title>
-    <style>
-        :root {
+    <style>:root {
             --bg-color: #E6E6E6;
             --header-bg: #FFFFFF;
             --text-color: #000000;
@@ -25,67 +24,59 @@
             line-height: 1.5;
         }
 
-      /* Header sur deux lignes avec alignement à droite de la navigation */
+        /* Header sur une seule ligne */
         header {
             background-color: var(--header-bg);
             display: flex;
-            flex-direction: column; /* Place la navigation en dessous du titre en desktop et mobile */
-            align-items: stretch;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid var(--text-color);
-            padding: 1.2rem 2rem 0.8rem 2rem;
+            padding: 0.8rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .logo {
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 0.5rem; /* Espace sous Victoire Gonzalvez */
-        }
-
-        /* Navigation située sur la ligne du dessous, alignée à droite */
-        nav {
-            display: flex;
-            justify-content: flex-end; /* Alignement à droite */
-            gap: 3.5rem; /* Espacement augmenté entre projects, notes et about */
-            align-items: center;
-        }
-
         .logo a {
-            font-size: 2.2rem;
+            font-size: 1.5rem;
             text-decoration: none;
             color: var(--text-color);
             font-weight: normal;
         }
 
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
         nav a {
             text-decoration: none;
             color: var(--text-color);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
 
         nav a.active, nav a:hover {
             text-decoration: underline;
         }
 
-        /* Soulignement du logo quand on est sur Home */
         .logo a.active-home {
-            text-decoration: underline;
+            text-decoration: none;
         }
 
-        /* Conteneur et menu déroulant pour Projects */
         .nav-projects-container {
             position: relative;
         }
 
+        /* Menu déroulant élargi et étalé avec grille à 3 colonnes */
         .nav-dropdown {
             display: none;
             position: absolute;
             top: 100%;
             right: 0;
-            width: 420px;
-            background-color: var(--bg-color);
+            width: 700px;
+            background-color: #FFFFFF;
             border: 1px solid var(--text-color);
             padding: 1rem 1.5rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -108,7 +99,6 @@
             display: block;
         }
 
-        /* Galerie d'accueil */
         .home-gallery {
             display: flex;
             flex-direction: column;
@@ -123,7 +113,7 @@
             display: block;
         }
 
-        /* SECTION PROJECTS : Conteneur superposé */
+        /* SECTION PROJECTS */
         .projects-container {
             position: relative;
             max-width: 1100px;
@@ -131,7 +121,6 @@
             min-height: 80vh;
         }
 
-        /* Image d'arrière-plan */
         .projects-bg-image {
             width: 100%;
             height: auto;
@@ -140,14 +129,13 @@
             display: block;
         }
 
-        /* Boîte encadrée superposée (Overlay Box) */
         .projects-overlay-box {
             position: absolute;
             top: 0;
             right: 5%;
-            width: 480px;
-            max-width: 90%;
-            background-color: var(--bg-color);
+            width: 700px;
+            max-width: 95%;
+            background-color: #FFFFFF;
             border: 1px solid var(--text-color);
             padding: 1.5rem 2rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -159,13 +147,20 @@
         }
 
         .project-list li {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 180px;
+            gap: 1.5rem;
             align-items: baseline;
             padding: 0.6rem 0;
             border-bottom: 1px solid rgba(0,0,0,0.15);
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .project-list li span.nature {
+            text-align: right;
+            font-style: italic;
+            color: #555;
         }
 
         .project-list li:last-child {
@@ -176,7 +171,6 @@
             font-style: italic;
         }
 
-        /* Vue détaillée d'un projet */
         .project-detail {
             max-width: 800px;
             margin: 0 auto;
@@ -193,17 +187,29 @@
             margin-bottom: 2rem;
         }
 
+        /* Carrousel à format fixe */
+        .carousel-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            position: relative;
+        }
+
         .carousel {
             position: relative;
-            margin-bottom: 2rem;
+            width: 100%;
+            height: 550px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: rgba(0,0,0,0.02);
+            overflow: hidden;
+            cursor: pointer;
         }
 
         .carousel img {
             max-width: 100%;
-            max-height: 70vh;
+            max-height: 100%;
             object-fit: contain;
         }
 
@@ -214,12 +220,46 @@
             font-size: 2rem;
             cursor: pointer;
             padding: 1rem;
+            z-index: 10;
         }
 
-        .carousel-btn.prev { left: -3rem; }
-        .carousel-btn.next { right: -3rem; }
+        .carousel-btn.prev { left: -3.5rem; }
+        .carousel-btn.next { right: -3.5rem; }
 
-        /* Notes & About */
+        /* Crédits photo & Texte alternatif sous l'image 1 */
+        .photo-credits {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .photo-credits .alt-text {
+            margin-top: 0.4rem;
+            background-color: #d0e1f9;
+            display: inline-block;
+            padding: 0.2rem 0.4rem;
+        }
+
+        .carousel-dots {
+            display: none;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ccc;
+            display: inline-block;
+        }
+
+        .dot.active {
+            background-color: #000;
+        }
+
         .notes-content, .about-content {
             max-width: 800px;
             margin: 0 auto;
@@ -238,10 +278,10 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            header { padding: 1rem; }
-            nav { gap: 1.5rem; }
-            nav a { font-size: 1.2rem; }
-            .nav-dropdown { width: 280px; right: 0; }
+            header { padding: 0.8rem 1rem; }
+            nav { gap: 1rem; }
+            nav a { font-size: 1rem; }
+            .nav-dropdown { width: 100vw; right: -1rem; }
             main { padding: 1rem; }
 
             .projects-overlay-box {
@@ -252,9 +292,27 @@
                 margin-bottom: 1.5rem;
             }
 
-            .project-list li { font-size: 1.2rem; }
-            .carousel-btn.prev { left: -1rem; }
-            .carousel-btn.next { right: -1rem; }
+            .project-list li {
+                grid-template-columns: 1fr auto;
+                font-size: 1rem;
+            }
+
+            .project-list li span.nature {
+                grid-column: span 2;
+                text-align: left;
+            }
+
+            .carousel {
+                height: 400px;
+            }
+
+            .carousel-btn {
+                display: none;
+            }
+
+            .carousel-dots {
+                display: flex;
+            }
         }
     </style>
 </head>
@@ -328,37 +386,39 @@
             <div class="projects-container">
                 
                 <!-- Boîte encadrée des projets superposée -->
-                <div class="projects-overlay-box">
+                <div class="projects-overlay-box" id="projects-overlay">
                     <ul class="project-list">
-                        <li onclick="loadProject('La Casa del Turrón', '2026', '', 'An installation project blending fiction, materials, and writing workshops...', ['./section_Projects/1_La%20Casa%20del%20Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg'])">
-                            <span>La Casa del Turrón</span> <span>2026</span>
+                        <li onclick="loadProject(
+                            'La Casa del Turrón', 
+                            '2026', 
+                            'installation', 
+                            'An installation project blending fiction, materials, and writing workshops. Written at the beginning of the residency at Villa Belleville, La Casa del Turrón is a short story resulting from documentary research on the commercial activities of Els Limits, a town on the French-Spanish border, and its culture of erotic clubs, shaped by mass tourism from France to Spain. In these spaces, "non-passage" takes shape through surfaces designed to be easily cleaned and to erase all traces of use: linoleum floors, washable plastics, tightly stretched sheets, and materials that return to their original state after each use. Starting from this absence of traces, the project reflects on the intimacy surrounding the clients and their activities, as well as on the presences that remain hidden within these spaces.', 
+                            ['./projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg', './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_02.jpg'], 
+                            'Adèle Onnillon', 
+                            'Four leather tapestries form the installation, covered with a patina made from grease and pigments developed during the residency. Together, they recreate a fictional club space. Within this space, collective writing workshops explored erotic fiction through the experience of "overflow. " Through text and movement, the workshops explored how overflow can disrupt closed or cyclical situations.'
+                        )">
+                            <span>La Casa del Turrón</span><span>2026</span><span class="nature">installation</span>
                         </li>
-                        <li onclick="loadProject('Coco Sour', '2025', '', 'Solo exhibition, Galerie Jean Collet...', ['./section_Projects/coco-sour/1.jpg', './section_Projects/coco-sour/2.jpg'])">
-                            <span>Coco Sour</span> <span>2025</span>
+                        <li onclick="loadProject('Coco Sour', '2025', 'solo show', 'Solo exhibition, Galerie Jean Collet...', ['./section_Projects/coco-sour/1.jpg'])">
+                            <span>Coco Sour</span><span>2025</span><span class="nature">solo show</span>
                         </li>
-                        <li onclick="loadProject('Succo & Cream', '2024', '', 'Research residency, Fondation Thalie...', ['./section_Projects/succo-and-cream/1.jpg'])">
-                            <span>Succo & Cream</span> <span>2024</span>
+                        <li onclick="loadProject('Succo & Cream', '2024', 'research residency', 'Research residency...', ['./section_Projects/succo-and-cream/1.jpg'])">
+                            <span>Stucco & Cream</span><span>2024</span><span class="nature">research residency</span>
                         </li>
-                        <li onclick="loadProject('Cake, Cannibalism, Death...', '2024', '', 'Description...', ['./section_Projects/cake-cannibalism/1.jpg'])">
-                            <span>Cake, Cannibalism, Death...</span> <span>2024</span>
+                        <li onclick="loadProject('Cake, Cannibalism, Death, Fertility', '2024', 'workshop', 'Description...', ['./section_Projects/cake-cannibalism/1.jpg'])">
+                            <span>Cake, Cannibalism, Death, Fertility</span><span>2024</span><span class="nature">workshop</span>
                         </li>
-                        <li onclick="loadProject('Translating Bodies', '2023', '', 'Description...', ['./section_Projects/translating-bodies/1.jpg'])">
-                            <span>Translating Bodies</span> <span>2023</span>
+                        <li onclick="loadProject('Translating Bodies', '2023', 'installation', 'Description...', ['./section_Projects/translating-bodies/1.jpg'])">
+                            <span>Translating Bodies</span><span>2023</span><span class="nature">installation</span>
                         </li>
-                        <li onclick="loadProject('Synthesised Blue', '2022', '', 'Description...', ['./section_Projects/synthesised-blue/1.jpg'])">
-                            <span>Synthesised Blue</span> <span>2022</span>
+                        <li onclick="loadProject('Synthesised Blue', '2022', 'installation', 'Description...', ['./section_Projects/synthesised-blue/1.jpg'])">
+                            <span>Synthesised Blue</span><span>2022</span><span class="nature">installation</span>
                         </li>
-                        <li onclick="loadProject('Get in meine Süße', '2021', '', 'Description...', ['./section_Projects/get-in-meine-suse/1.jpg'])">
-                            <span>Get in meine Süße</span> <span>2021</span>
+                        <li onclick="loadProject('Looking in on me changing', '2021', 'duo show', 'Description...', ['./section_Projects/looking-in-on-me/1.jpg'])">
+                            <span>Looking in on me changing</span><span>2021</span><span class="nature">duo show</span>
                         </li>
-                        <li onclick="loadProject('Looking in on me...', '2021', '', 'Description...', ['./section_Projects/looking-in-on-me/1.jpg'])">
-                            <span>Looking in on me...</span> <span>2021</span>
-                        </li>
-                        <li onclick="loadProject('Joan Glory Peel', '2021', '', 'Description...', ['./section_Projects/joan-glory-peel/1.jpg'])">
-                            <span>Joan Glory Peel</span> <span>2021</span>
-                        </li>
-                        <li onclick="loadProject('Dame Tartine', '2020', '', 'Description...', ['./section_Projects/dame-tartine/1.jpg'])">
-                            <span>Dame Tartine</span> <span>2020</span>
+                        <li onclick="loadProject('Joan Glory Peel', '2021', 'sculpture', 'Description...', ['./section_Projects/joan-glory-peel/1.jpg'])">
+                            <span>Joan Glory Peel</span><span>2021</span><span class="nature">sculpture</span>
                         </li>
                     </ul>
                 </div>
@@ -379,11 +439,21 @@
                 <div class="project-description" id="detail-desc-1"></div>
 
                 
-                <!-- Carrousel d'images au milieu -->
-                <div class="carousel">
+                <!-- Carrousel -->
+                <div class="carousel-container">
                     <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>
-                    <img id="carousel-img" src="" alt="Project Image">
+                    <div class="carousel" id="carousel-box" onclick="nextImage()">
+                        <img id="carousel-img" src="" alt="Project Image">
+                    </div>
                     <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>
+                    
+                    <div class="carousel-dots" id="carousel-dots"></div>
+                
+                    <!-- Crédits photos sous la première image -->
+                    <div class="photo-credits" id="photo-credits-container" style="display: none;">
+                        <div>Photo credit: <span id="credit-author"></span></div>
+                        <div class="alt-text" id="credit-alt"></div>
+                    </div>
                 </div>
 
                 <!-- Seconde moitié du texte -->
@@ -400,7 +470,7 @@ The plastic squeaks with every movement. I wish I could
 stretch further because everything keeps overflowing.
 À force de prier et de vivre d’espoir, to clear the fog.
 Sometimes I really wonder what I am looking for. Café-
-cigarette on the quay at <a href="#" onclick="showSection('ruisbroek'); return false;" style="font-weight: bold; color: inherit; text-decoration: underline;">Ruisbroek</a>, a flash on your shirt
+cigarette on the quay at <a href="./Ruisbroek.pdf" target="_blank" style="font-weight: bold; color: inherit; text-decoration: underline;">Ruisbroek</a>, a flash on your shirt
 at first sight, a straight pause in short sleeves letting the
 air circulate along your back. Blue scales on a dry curve. A
 bottle of sangria shaped like a penis................................
@@ -423,27 +493,6 @@ the upholstery of a bench.
                 </div>
             </div>
         </section>
-
-        <!-- NOUVELLE SECTION RUISBROEK -->
-<section id="ruisbroek" class="section">
-    <div class="notes-content" style="position: relative;">
-        <div style="text-align: right; font-size: 1.2rem; margin-bottom: 2rem;">25.05.24</div>
-        <div style="font-style: italic; margin-bottom: 1.5rem;">Street view</div>
-        <p style="margin-bottom: 1rem;">
-            1. Avant-cœur et papier de soie, ou packaging affectueux à déballer.<br>
-            Pellicule transparente qui donne de la valeur, voile de motifs, Papier peint de chambre infantile.<br>
-            — Je suis un petit dos B monté sur un bonnet C. ~
-        </p>
-        <p style="margin-bottom: 1rem;">
-            2. Aujourd’hui j’ai été sage, je peux avoir une glace. Froide, au lait, parfum coco<br>
-            Café-clope sur le quai de Ruisbroek. Flash sur sa chemise au premier regard. Straight-pause en manches-courtes qui fait circuler l’air dans le dos.<br>
-            Dragon façon bouteille de Sky, ou Gin. Des écailles bleues sur courbe sèche.<br>
-            Retour des guerriers.<br>
-            Pour l’encas une barquette de nems snackés, cuisson crispy.<br>
-            Sriracha aux lèvres. Fin des combats.
-        </p>
-    </div>
-</section>
 
         <!-- Section About -->
         <section id="about" class="section">
@@ -468,6 +517,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         let currentImages = [];
         let currentIndex = 0;
+        let currentCreditAuthor = '';
+        let currentCreditAlt = '';
 
         function showSection(sectionId) {
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
@@ -480,6 +531,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 logoEl.classList.remove('active-home');
             }
 
+            // Réaffiche le cadre overlay si on revient sur projects
+            if (sectionId === 'projects') {
+                const overlayBox = document.getElementById('projects-overlay');
+                if (overlayBox) overlayBox.style.display = 'block';
+            }
+
             document.getElementById(sectionId).classList.add('active');
             if (sectionId !== 'home' && sectionId !== 'project-detail-section') {
                 const activeNav = document.getElementById('nav-' + sectionId);
@@ -487,43 +544,60 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        function loadProject(title, year, shortIntro, fullDescription, images) {
-            // Gestion de la compatibilité selon le nombre d'arguments passés
-            if (Array.isArray(fullDescription)) {
-                images = fullDescription;
-                fullDescription = shortIntro;
-                shortIntro = '';
-            }
-
+        function loadProject(title, year, nature, textPart1, textPart2, images, creditAuthor = '', creditAlt = '') {
             currentImages = images || [];
             currentIndex = 0;
+            currentCreditAuthor = creditAuthor;
+            currentCreditAlt = creditAlt;
+
             document.getElementById('detail-title').innerText = `${title} (${year})`;
-            document.getElementById('detail-subtitle').innerText = shortIntro || '';
+            document.getElementById('detail-subtitle').innerText = nature || '';
 
-            // Séparation du texte en deux moitiés au milieu des phrases
-            const text = fullDescription || '';
-            const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
-            
-            if (sentences.length > 1) {
-                const midIndex = Math.ceil(sentences.length / 2);
-                document.getElementById('detail-desc-1').innerText = sentences.slice(0, midIndex).join(' ');
-                document.getElementById('detail-desc-2').innerText = sentences.slice(midIndex).join(' ');
-            } else {
-                // Si le texte est très court ou ne contient qu'une phrase
-                document.getElementById('detail-desc-1').innerText = text;
-                document.getElementById('detail-desc-2').innerText = '';
-            }
+            const overlayBox = document.getElementById('projects-overlay');
+            if (overlayBox) overlayBox.style.display = 'none';
 
+            // Affichage manuel des deux blocs de texte séparés
+            document.getElementById('detail-desc-1').innerText = textPart1 || '';
+            document.getElementById('detail-desc-2').innerText = textPart2 || '';
+
+            renderDots();
             updateCarouselImage();
         
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
             document.getElementById('project-detail-section').classList.add('active');
         }
 
+        function renderDots() {
+            const dotsContainer = document.getElementById('carousel-dots');
+            dotsContainer.innerHTML = '';
+            if (currentImages.length > 1) {
+                currentImages.forEach((_, idx) => {
+                    const dot = document.createElement('span');
+                    dot.className = `dot ${idx === currentIndex ? 'active' : ''}`;
+                    dotsContainer.appendChild(dot);
+                });
+            }
+        }
+
         function updateCarouselImage() {
             if (currentImages.length > 0) {
                 document.getElementById('carousel-img').src = currentImages[currentIndex];
             }
+
+            // Crédits sous l'image 1 uniquement
+            const creditsBox = document.getElementById('photo-credits-container');
+            if (currentIndex === 0 && (currentCreditAuthor || currentCreditAlt)) {
+                creditsBox.style.display = 'block';
+                document.getElementById('credit-author').innerText = currentCreditAuthor;
+                document.getElementById('credit-alt').innerText = currentCreditAlt;
+            } else {
+                creditsBox.style.display = 'none';
+            }
+
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentIndex);
+            });
         }
 
         function nextImage() {
@@ -539,6 +613,21 @@ window.addEventListener('DOMContentLoaded', () => {
                 updateCarouselImage();
             }
         }
+
+        // Tactile / Swipe sur mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const carouselBox = document.getElementById('carousel-box');
+
+        carouselBox.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carouselBox.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextImage();
+            if (touchEndX - touchStartX > 50) prevImage();
+        });
     </script>
 </body>
 </html>
