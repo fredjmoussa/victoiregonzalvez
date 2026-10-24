@@ -4,11 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victoire Gonzalvez</title>
-    <style>:root {
+    <style>
+        /* Déclaration des polices */
+        @font-face {
+            font-family: 'Dante MT';
+            src: url('./Dante MT Regular/Dante MT Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Dante MT';
+            src: url('./Dante MT Italic/Dante MT Italic.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Arno Pro';
+            src: url('./ArnoPro-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
             --bg-color: #E6E6E6;
             --header-bg: #FFFFFF;
             --text-color: #000000;
-            --font-family: serif;
+            --font-family: 'Dante MT', 'Arno Pro', serif;
         }
 
         * {
@@ -24,7 +45,12 @@
             line-height: 1.5;
         }
 
-        /* Header sur une seule ligne */
+        main {
+            font-family: 'Arno Pro', 'Dante MT', serif;
+            padding: 2rem;
+        }
+
+        /* Header avec alignement parfait sur les bords */
         header {
             background-color: var(--header-bg);
             display: flex;
@@ -39,15 +65,16 @@
         }
 
         .logo a {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             text-decoration: none;
             color: var(--text-color);
             font-weight: normal;
         }
 
+        /* Espacement augmenté entre projects, notes et about */
         nav {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
             align-items: center;
         }
 
@@ -69,13 +96,14 @@
             position: relative;
         }
 
+        /* Menu déroulant ajusté */
         .nav-dropdown {
             display: none;
             position: absolute;
             top: 100%;
             right: 0;
-            width: 850px;
-            max-width: 95vw;
+            width: 750px;
+            max-width: 90vw;
             background-color: #FFFFFF;
             border: 1px solid var(--text-color);
             padding: 1rem 1.5rem;
@@ -85,10 +113,6 @@
 
         .nav-projects-container:hover .nav-dropdown {
             display: block;
-        }
-
-        main {
-            padding: 2rem;
         }
 
         .section {
@@ -132,12 +156,12 @@
         .projects-overlay-box {
             position: absolute;
             top: 0;
-            right: 5%;
-            width: 850px;
-            max-width: 95%;
+            right: 0;
+            width: 780px;
+            max-width: 100%;
             background-color: #FFFFFF;
             border: 1px solid var(--text-color);
-            padding: 1.5rem 2rem;
+            padding: 1.2rem 1.8rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             z-index: 10;
         }
@@ -148,11 +172,11 @@
 
         .project-list li {
             display: grid;
-            grid-template-columns: 1fr auto 180px;
+            grid-template-columns: 1fr 100px 180px;
             gap: 1.5rem;
-            align-items: baseline;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.15);
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.12);
             cursor: pointer;
             font-size: 1.1rem;
         }
@@ -160,7 +184,7 @@
         .project-list li span.nature {
             text-align: right;
             font-style: italic;
-            color: #555;
+            color: #444;
         }
 
         .project-list li:last-child {
@@ -171,6 +195,7 @@
             font-style: italic;
         }
 
+        /* DETAIL PROJET */
         .project-detail {
             max-width: 800px;
             margin: 0 auto;
@@ -178,33 +203,52 @@
 
         .project-detail h2 {
             font-size: 1.8rem;
-            font-weight: normal;
-            margin-bottom: 0.5rem;
+            font-weight: bold;
+            margin-bottom: 0.2rem;
         }
 
         .project-detail .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.8rem;
         }
 
-        /* Carrousel à format fixe */
-        .carousel-container {
+        .project-description {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin: 1.5rem 0;
+        }
+
+        .project-description p {
+            margin-bottom: 1rem;
+        }
+
+        /* CARROUSEL & FLÈCHES CORRIGÉES */
+        .carousel-wrapper {
+            position: relative;
             width: 100%;
             max-width: 700px;
-            margin: 0 auto 2rem auto;
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-container {
+            width: 100%;
             position: relative;
         }
 
         .carousel {
             position: relative;
             width: 100%;
-            height: 550px;
+            height: 520px;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: rgba(0,0,0,0.02);
             overflow: hidden;
-            cursor: pointer;
+            cursor: zoom-in;
         }
 
         .carousel img {
@@ -215,34 +259,38 @@
 
         .carousel-btn {
             position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             background: none;
             border: none;
-            font-size: 2rem;
+            font-size: 2.2rem;
             cursor: pointer;
-            padding: 1rem;
-            z-index: 10;
+            padding: 0.5rem 1rem;
+            z-index: 20;
+            user-select: none;
+            color: #000;
         }
 
-        .carousel-btn.prev { left: -3.5rem; }
-        .carousel-btn.next { right: -3.5rem; }
+        .carousel-btn.prev { left: -4rem; }
+        .carousel-btn.next { right: -4rem; }
 
-        /* Crédits photo & Texte alternatif sous l'image 1 */
+        /* CRÉDITS PHOTO ET ALT TEXT */
         .photo-credits {
             margin-top: 0.8rem;
             font-size: 0.95rem;
-            color: #333;
-            line-height: 1.4;
+            color: #222;
+            line-height: 1.5;
         }
 
-        .photo-credits .alt-text {
-            margin-top: 0.4rem;
-            background-color: #d0e1f9;
+        .photo-credits .alt-text-box {
+            margin-top: 0.5rem;
+            background-color: #D0E1F9;
+            padding: 0.4rem 0.6rem;
             display: inline-block;
-            padding: 0.2rem 0.4rem;
         }
 
         .carousel-dots {
-            display: none;
+            display: flex;
             justify-content: center;
             gap: 8px;
             margin-top: 10px;
@@ -260,6 +308,29 @@
             background-color: #000;
         }
 
+        /* LIGHTBOX (AGRANDISSEMENT PHOTO) */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.88);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .lightbox-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            object-fit: contain;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Notes & About */
         .notes-content, .about-content {
             max-width: 800px;
             margin: 0 auto;
@@ -270,16 +341,10 @@
         .note-item { margin-bottom: 2rem; }
         .about-content p { margin-bottom: 1.5rem; }
 
-        .project-description {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-top: 1.5rem;
-        }
-
         /* Mobile Responsive */
         @media (max-width: 768px) {
             header { padding: 0.8rem 1rem; }
-            nav { gap: 1rem; }
+            nav { gap: 1.5rem; }
             nav a { font-size: 1rem; }
             .nav-dropdown { width: 100vw; right: -1rem; }
             main { padding: 1rem; }
@@ -288,7 +353,6 @@
                 position: relative;
                 right: auto;
                 width: 100%;
-                max-width: 100%;
                 margin-bottom: 1.5rem;
             }
 
@@ -302,17 +366,9 @@
                 text-align: left;
             }
 
-            .carousel {
-                height: 400px;
-            }
-
-            .carousel-btn {
-                display: none;
-            }
-
-            .carousel-dots {
-                display: flex;
-            }
+            .carousel { height: 380px; }
+            .carousel-btn.prev { left: 0.2rem; color: #fff; text-shadow: 0 0 5px #000; }
+            .carousel-btn.next { right: 0.2rem; color: #fff; text-shadow: 0 0 5px #000; }
         }
     </style>
 </head>
@@ -327,16 +383,21 @@
                 <a id="nav-projects" style="cursor: default; text-decoration: none;">projects</a>
                <div class="nav-dropdown">
                     <ul class="project-list">
-                        <li onclick="loadProject('La Casa del Turrón', '2026', '', 'An installation project blending fiction, materials, and writing workshops. Written at the beginning of the residency at Villa Belleville, La Casa del Turrón is a short story resulting from documentary research on the commercial activities of Els Limits, a town on the French-Spanish border, and its culture of erotic clubs, shaped by mass tourism from France to Spain. In these spaces, &quot;non-passage&quot; takes shape through surfaces designed to be easily cleaned and to erase all traces of use: linoleum floors, washable plastics, tightly stretched sheets, and materials that return to their original state after each use. Starting from this absence of traces, the project reflects on the intimacy surrounding the clients and their activities, as well as on the presences that remain hidden within these spaces. Four leather tapestries form the installation, covered with a patina made from grease and pigments developed during the residency. Together, they recreate a fictional club space. Within this space, collective writing workshops explored erotic fiction through the experience of &quot;overflow.&quot; Through text and movement, the workshops explored how overflow can disrupt closed or cyclical situations.', [
-                            './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg',
-                            './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_02.jpg',
-                            './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_03.jpg',
-                            './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_04.jpg',
-                            './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_06.jpg',
-                            './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_07.jpg'
-                        ])">
-                            <span>La Casa del Turrón</span> <span>2026</span>
+                        <li onclick="loadProject(
+                            'La Casa del Turrón', 
+                            'Installation, writing workshop', 
+                            'Villa Belleville, Paris, July 2025–January 2026',
+                            'An installation project blending fiction, materials, and writing workshops. Written at the beginning of the residency at Villa Belleville, La Casa del Turrón is a short story resulting from documentary research on the commercial activities of Els Limits, a town on the French-Spanish border, and its culture of erotic clubs, shaped by mass tourism from France to Spain. In these spaces, &quot;non-passage&quot; takes shape through surfaces designed to be easily cleaned and to erase all traces of use: linoleum floors, washable plastics, tightly stretched sheets, and materials that return to their original state after each use. Starting from this absence of traces, the project reflects on the intimacy surrounding the clients and their activities, as well as on the presences that remain hidden within these spaces. Four leather tapestries form the installation, covered with a patina made from grease and pigments developed during the residency. Together, they recreate a fictional club space. Within this space, collective writing workshops explored erotic fiction through the experience of &quot;overflow.&quot; Through text and movement, the workshops explored how overflow can disrupt closed or cyclical situations.',
+                            '<p><em>La Casa del Turrón</em> is a short story emerging from Els Limits, a town on the French-Spanish border shaped by mass tourism from France to Spain and the culture of erotic clubs.</p><p>In these spaces, &quot;non-passage&quot; takes shape through surfaces designed to be easily cleaned and to erase all traces of use: linoleum floors, washable plastics, tightly stretched sheets, and materials that return to their original state after each use.</p><p>Starting from this absence of traces, the project reflects on the intimacy surrounding the clients and their activities, as well as on the presences that inhabit the walls.</p>', 
+                            ['./projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_01.jpg', './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_02.jpg', './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_03.jpg'], 
+                            '<p>Four leather wall hangings are coated with a grease- and pigment-based patina developed during the residency. The series recreates a fictional club.</p><p>Collaborative writing workshops took place in the space, exploring erotic fiction through the experience of &quot;overflowing&quot; as a way to disrupt closed or cyclical situations.</p>', 
+                            ['./projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_04.jpg', './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_06.jpg', './projects/1_La Casa del Turron_export_2026/victoire-gonzalvez-la-casa-del-turron_07.jpg'], 
+                            'Adèle Onnillon', 
+                            'Image 1: Installation view of La Casa del Turrón (2025), showing leather panels covered with a brown patina and patterned wallpaper in an exhibition space.'
+                        )">
+                            <span>La Casa del Turrón</span><span>2026</span><span class="nature">installation</span>
                         </li>
+                        
                         <li onclick="loadProject('Coco Sour', '2025', '', 'Solo exhibition, Galerie Jean Collet...', ['./section_Projects/coco-sour/1.jpg', './section_Projects/coco-sour/2.jpg'])">
                             <span>Coco Sour</span> <span>2025</span>
                         </li>
@@ -429,43 +490,57 @@
             </div>
         </section>
 
-        <!-- Vue détaillée dynamique d'un projet avec 2 carrousels -->
+     <!-- Vue détaillée dynamique d'un projet avec 2 carrousels et descriptions -->
         <section id="project-detail-section" class="section">
             <div class="project-detail">
-                <h2 id="detail-title">Title (2024)</h2>
-                <div class="subtitle" id="detail-subtitle">Short intro above</div>
+                <div id="detail-header-meta" style="font-weight: bold; font-size: 1.2rem; margin-bottom: 0.2rem;"></div>
+                <div id="detail-subtitle" style="font-style: italic; font-size: 1.1rem; margin-bottom: 1.8rem;"></div>
                 
-                <!-- Carrousel 1 -->
-                <div class="carousel-container">
-                    <button class="carousel-btn prev" onclick="prevImage(1)">&#10094;</button>
-                    <div class="carousel" id="carousel-box-1" onclick="nextImage(1)">
-                        <img id="carousel-img-1" src="" alt="Project Image 1">
-                    </div>
-                    <button class="carousel-btn next" onclick="nextImage(1)">&#10095;</button>
-                    <div class="carousel-dots" id="carousel-dots-1"></div>
-                    <div class="photo-credits" id="photo-credits-container" style="display: none;">
-                        <div>Photo credit: <span id="credit-author"></span></div>
-                        <div class="alt-text" id="credit-alt"></div>
-                    </div>
-                </div>
-
-                <!-- Première moitié du texte -->
+                <!-- Description principale (texte d'introduction) -->
                 <div class="project-description" id="detail-desc-1"></div>
 
-                <!-- Carrousel 2 -->
-                <div class="carousel-container">
-                    <button class="carousel-btn prev" onclick="prevImage(2)">&#10094;</button>
-                    <div class="carousel" id="carousel-box-2" onclick="nextImage(2)">
-                        <img id="carousel-img-2" src="" alt="Project Image 2">
+                <!-- CARROUSEL 1 -->
+                <div class="carousel-wrapper" id="carousel-wrapper-1">
+                    <button class="carousel-btn prev" onclick="prevImage(1)">&#10094;</button>
+                    <div class="carousel-container">
+                        <div class="carousel" id="carousel-box-1" onclick="openLightbox(1)">
+                            <img id="carousel-img-1" src="" alt="Project Image 1">
+                        </div>
+                        <div class="carousel-dots" id="carousel-dots-1"></div>
+                        
+                        <!-- Crédits photos & Alt text sous carrousel 1 -->
+                        <div class="photo-credits" id="photo-credits-container" style="display: none;">
+                            <div>Photo credit: <span id="credit-author"></span></div>
+                            <div class="alt-text-box">
+                                <strong>Alternative text:</strong><br>
+                                <span id="credit-alt"></span>
+                            </div>
+                        </div>
                     </div>
-                    <button class="carousel-btn next" onclick="nextImage(2)">&#10095;</button>
-                    <div class="carousel-dots" id="carousel-dots-2"></div>
+                    <button class="carousel-btn next" onclick="nextImage(1)">&#10095;</button>
                 </div>
 
-                <!-- Seconde moitié du texte -->
+                <!-- Séparateur / Deuxième description -->
                 <div class="project-description" id="detail-desc-2"></div>
+
+                <!-- CARROUSEL 2 -->
+                <div class="carousel-wrapper" id="carousel-wrapper-2">
+                    <button class="carousel-btn prev" onclick="prevImage(2)">&#10094;</button>
+                    <div class="carousel-container">
+                        <div class="carousel" id="carousel-box-2" onclick="openLightbox(2)">
+                            <img id="carousel-img-2" src="" alt="Project Image 2">
+                        </div>
+                        <div class="carousel-dots" id="carousel-dots-2"></div>
+                    </div>
+                    <button class="carousel-btn next" onclick="nextImage(2)">&#10095;</button>
+                </div>
             </div>
         </section>
+
+        <!-- Lightbox pour agrandir les images -->
+        <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+            <img id="lightbox-img" src="" alt="Enlarged view">
+        </div>
 
         <!-- Section Notes -->
         <section id="notes" class="section">
@@ -539,7 +614,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 logoEl.classList.remove('active-home');
             }
 
-            // Gère l'affichage de la boîte overlay des projets uniquement sur la section projects
+            // Gère l'affichage de la boîte overlay uniquement quand on est sur "projects"
             const overlayBox = document.getElementById('projects-overlay');
             if (overlayBox) {
                 overlayBox.style.display = (sectionId === 'projects') ? 'block' : 'none';
@@ -552,7 +627,7 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        function loadProject(title, year, nature, textPart1, imagesArr1, textPart2, imagesArr2, creditAuthor = '', creditAlt = '') {
+        function loadProject(title, metaType, subtitleLocation, textPart1, imagesArr1, textPart2, imagesArr2, creditAuthor = '', creditAlt = '') {
             images1 = imagesArr1 || [];
             images2 = imagesArr2 || [];
             currentIndex1 = 0;
@@ -560,14 +635,20 @@ window.addEventListener('DOMContentLoaded', () => {
             currentCreditAuthor = creditAuthor;
             currentCreditAlt = creditAlt;
 
-            document.getElementById('detail-title').innerText = `${title} (${year})`;
-            document.getElementById('detail-subtitle').innerText = nature || '';
+            document.getElementById('detail-header-meta').innerText = metaType || title;
+            document.getElementById('detail-subtitle').innerText = subtitleLocation || '';
 
+            // Masque la grille sur la vue de détail
             const overlayBox = document.getElementById('projects-overlay');
             if (overlayBox) overlayBox.style.display = 'none';
 
-            document.getElementById('detail-desc-1').innerText = textPart1 || '';
-            document.getElementById('detail-desc-2').innerText = textPart2 || '';
+            // Textes des descriptions
+            document.getElementById('detail-desc-1').innerHTML = textPart1 || '';
+            document.getElementById('detail-desc-2').innerHTML = textPart2 || '';
+
+            // Affichage / Masquage des carrousels s'ils contiennent des images
+            document.getElementById('carousel-wrapper-1').style.display = images1.length > 0 ? 'flex' : 'none';
+            document.getElementById('carousel-wrapper-2').style.display = images2.length > 0 ? 'flex' : 'none';
 
             renderDots(1, images1, 'carousel-dots-1');
             renderDots(2, images2, 'carousel-dots-2');
@@ -604,21 +685,13 @@ window.addEventListener('DOMContentLoaded', () => {
                     creditsBox.style.display = 'none';
                 }
                 const dots = document.querySelectorAll('#carousel-dots-1 .dot');
-                dots.forEach((dot, idx) => {
-                    dot.classList.toggle('active', idx === currentIndex1);
-                });
-            } else if (carNum === 1) {
-                document.getElementById('carousel-img-1').src = '';
+                dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentIndex1));
             }
 
             if (carNum === 2 && images2.length > 0) {
                 document.getElementById('carousel-img-2').src = images2[currentIndex2];
                 const dots = document.querySelectorAll('#carousel-dots-2 .dot');
-                dots.forEach((dot, idx) => {
-                    dot.classList.toggle('active', idx === currentIndex2);
-                });
-            } else if (carNum === 2) {
-                document.getElementById('carousel-img-2').src = '';
+                dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentIndex2));
             }
         }
 
@@ -642,16 +715,27 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Tactile / Swipe sur mobile pour les deux carrousels
+        /* Lightbox - Agrandissement au clic */
+        function openLightbox(carNum) {
+            const imgSrc = carNum === 1 ? images1[currentIndex1] : images2[currentIndex2];
+            if (imgSrc) {
+                document.getElementById('lightbox-img').src = imgSrc;
+                document.getElementById('lightbox').style.display = 'flex';
+            }
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Tactile / Swipe sur mobile
         ['carousel-box-1', 'carousel-box-2'].forEach((boxId, index) => {
             const box = document.getElementById(boxId);
             if (box) {
                 let touchStartX = 0;
                 let touchEndX = 0;
                 const cNum = index + 1;
-                box.addEventListener('touchstart', e => {
-                    touchStartX = e.changedTouches[0].clientX;
-                });
+                box.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; });
                 box.addEventListener('touchend', e => {
                     touchEndX = e.changedTouches[0].clientX;
                     if (touchStartX - touchEndX > 50) nextImage(cNum);
