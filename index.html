@@ -51,18 +51,18 @@
         }
 
         /* Header avec alignement parfait sur les bords */
-        header {
-            background-color: var(--header-bg);
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--text-color);
-            padding: 0.8rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+header {
+    background-color: var(--header-bg);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--text-color);
+    padding: 0.8rem 6rem; 
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
         .logo a {
             font-size: 1.4rem;
@@ -72,11 +72,11 @@
         }
 
         /* Espacement augmenté entre projects, notes et about */
-        nav {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-        }
+            nav {
+        display: flex;
+        gap: 4rem; 
+        align-items: center;
+    }
 
         nav a {
             text-decoration: none;
@@ -399,31 +399,28 @@
                         </li>
                         
                         <li onclick="loadProject('Coco Sour', '2025', '', 'Solo exhibition, Galerie Jean Collet...', ['./section_Projects/coco-sour/1.jpg', './section_Projects/coco-sour/2.jpg'])">
-                            <span>Coco Sour</span> <span>2025</span>
+                            <span>Coco Sour</span> <span>2025</span><span class="nature">installation</span>
                         </li>
                         <li onclick="loadProject('Succo & Cream', '2024', '', 'Research residency, Fondation Thalie...', ['./section_Projects/succo-and-cream/1.jpg'])">
-                            <span>Succo & Cream</span> <span>2024</span>
+                            <span>Succo & Cream</span> <span>2024</span><span class="nature">solo show</span>
                         </li>
                         <li onclick="loadProject('Cake, Cannibalism, Death...', '2024', '', 'Description...', ['./section_Projects/cake-cannibalism/1.jpg'])">
-                            <span>Cake, Cannibalism, Death...</span> <span>2024</span>
+                            <span>Cake, Cannibalism, Death...</span> <span>2024</span><span class="nature">research residency</span>
                         </li>
                         <li onclick="loadProject('Translating Bodies', '2023', '', 'Description...', ['./section_Projects/translating-bodies/1.jpg'])">
-                            <span>Translating Bodies</span> <span>2023</span>
+                            <span>Translating Bodies</span> <span>2023</span><span class="nature">installation</span>
                         </li>
                         <li onclick="loadProject('Synthesised Blue', '2022', '', 'Description...', ['./section_Projects/synthesised-blue/1.jpg'])">
-                            <span>Synthesised Blue</span> <span>2022</span>
+                            <span>Synthesised Blue</span> <span>2022</span><span class="nature">installation</span>
                         </li>
                         <li onclick="loadProject('Get in meine Süße', '2021', '', 'Description...', ['./section_Projects/get-in-meine-suse/1.jpg'])">
-                            <span>Get in meine Süße</span> <span>2021</span>
+                            <span>Get in meine Süße</span> <span>2021</span><span class="nature">installation</span>
                         </li>
                         <li onclick="loadProject('Looking in on me...', '2021', '', 'Description...', ['./section_Projects/looking-in-on-me/1.jpg'])">
-                            <span>Looking in on me...</span> <span>2021</span>
+                            <span>Looking in on me...</span> <span>2021</span><span class="nature">duo show</span>
                         </li>
                         <li onclick="loadProject('Joan Glory Peel', '2021', '', 'Description...', ['./section_Projects/joan-glory-peel/1.jpg'])">
-                            <span>Joan Glory Peel</span> <span>2021</span>
-                        </li>
-                        <li onclick="loadProject('Dame Tartine', '2020', '', 'Description...', ['./section_Projects/dame-tartine/1.jpg'])">
-                            <span>Dame Tartine</span> <span>2020</span>
+                            <span>Joan Glory Peel</span> <span>2021</span><span class="nature">sculpture</span>
                         </li>
                     </ul>
                 </div>
