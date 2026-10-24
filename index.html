@@ -110,8 +110,8 @@
             z-index: 200;
         }
 
-        .nav-projects-container:hover .nav-dropdown,
-        .nav-dropdown:hover {
+       /* Le menu s'affiche au survol du conteneur du projet */
+        .nav-projects-container:hover .nav-dropdown {
             display: block;
         }
 
@@ -648,11 +648,11 @@ the upholstery of a bench.
                 logoEl.classList.remove('active-home');
             }
 
-            // Masque complètement le menu déroulant du header
+            // Réinitialise l'affichage du menu déroulant
             const dropdown = document.getElementById('dropdown-menu');
-            if (dropdown) dropdown.style.display = 'none';
+            if (dropdown) dropdown.style.display = '';
 
-            // Réaffiche le cadre overlay si on bascule sur projects
+            // Gestion du bloc d'overlay sur la page des projets
             const overlayBox = document.getElementById('projects-overlay');
             if (overlayBox) {
                 overlayBox.style.display = (sectionId === 'projects') ? 'block' : 'none';
