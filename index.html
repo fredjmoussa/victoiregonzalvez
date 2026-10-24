@@ -58,7 +58,7 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--text-color);
-            padding: 0.8rem 2rem; 
+            padding: 0.8rem 6rem; 
             position: sticky;
             top: 0;
             z-index: 100;
@@ -73,7 +73,7 @@
 
         nav {
             display: flex;
-            gap: 3.5rem; 
+            gap: 1.8rem; 
             align-items: center;
         }
 
@@ -242,7 +242,7 @@
             position: relative;
         }
 
-        .carousel {
+       .carousel {
             position: relative;
             width: 100%;
             height: 520px;
@@ -251,7 +251,7 @@
             justify-content: center;
             background-color: rgba(0,0,0,0.02);
             overflow: hidden;
-            cursor: zoom-in;
+            cursor: pointer;
         }
 
         .carousel img {
@@ -260,30 +260,36 @@
             object-fit: contain;
         }
 
-        .carousel-btn {
+        /* Overlay pour le texte alternatif en mode hover */
+        .carousel-alt-overlay {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 2.2rem;
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            z-index: 20;
-            user-select: none;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.92);
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
             color: #000;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            pointer-events: none;
+            z-index: 15;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.1);
         }
 
-        .carousel-btn.prev { left: -4rem; }
-        .carousel-btn.next { right: -4rem; }
+        .carousel:hover .carousel-alt-overlay {
+            opacity: 1;
+        }
 
+        /* Crédits photos centrés sous les points */
         .photo-credits {
             margin-top: 0.8rem;
             font-size: 0.95rem;
             color: #222;
+            text-align: center;
             line-height: 1.5;
         }
-
         .photo-credits .alt-text-box {
             margin-top: 0.5rem;
             background-color: #D0E1F9;
@@ -375,6 +381,9 @@
             }
 
             .carousel { height: 380px; }
+            /* Masquer les flèches sur mobile, le clic sur l'image fait avancer */
+            .carousel-btn {
+                display: none !important;
             .carousel-btn.prev { left: 0.2rem; color: #fff; text-shadow: 0 0 5px #000; }
             .carousel-btn.next { right: 0.2rem; color: #fff; text-shadow: 0 0 5px #000; }
         }
@@ -501,20 +510,19 @@
                 <div class="project-description" id="detail-desc-1"></div>
 
                 <!-- CARROUSEL 1 -->
-                <div class="carousel-wrapper" id="carousel-wrapper-1">
+                  <div class="carousel-wrapper" id="carousel-wrapper-1">
                     <button class="carousel-btn prev" onclick="prevImage(1)">&#10094;</button>
                     <div class="carousel-container">
-                        <div class="carousel" id="carousel-box-1" onclick="openLightbox(1)">
+                        <div class="carousel" id="carousel-box-1" onclick="handleCarouselClick(1)">
                             <img id="carousel-img-1" src="" alt="Project Image 1">
+                            <!-- Texte alternatif en mode hover -->
+                            <div class="carousel-alt-overlay" id="carousel-alt-1"></div>
                         </div>
                         <div class="carousel-dots" id="carousel-dots-1"></div>
                         
+                        <!-- Crédits photos au centre sous les points -->
                         <div class="photo-credits" id="photo-credits-container" style="display: none;">
-                            <div>Photo credit: <span id="credit-author"></span></div>
-                            <div class="alt-text-box">
-                                <strong>Alternative text:</strong><br>
-                                <span id="credit-alt"></span>
-                            </div>
+                            Photo credit: <span id="credit-author"></span>
                         </div>
                     </div>
                     <button class="carousel-btn next" onclick="nextImage(1)">&#10095;</button>
@@ -673,14 +681,28 @@ the upholstery of a bench.
         function updateCarouselImage(carNum) {
             if (carNum === 1 && images1.length > 0) {
                 document.getElementById('carousel-img-1').src = images1[currentIndex1];
+                
+                // Crédits photo sous les points
                 const creditsBox = document.getElementById('photo-credits-container');
-                if (currentIndex1 === 0 && (currentCreditAuthor || currentCreditAlt)) {
+                if (currentIndex1 === 0 && currentCreditAuthor) {
                     creditsBox.style.display = 'block';
                     document.getElementById('credit-author').innerText = currentCreditAuthor;
-                    document.getElementById('credit-alt').innerText = currentCreditAlt;
                 } else {
                     creditsBox.style.display = 'none';
                 }
+
+                // Texte alternatif en mode hover
+                const altOverlay = document.getElementById('carousel-alt-1');
+                if (altOverlay) {
+                    if (currentIndex1 === 0 && currentCreditAlt) {
+                        altOverlay.innerText = currentCreditAlt;
+                        altOverlay.style.display = 'block';
+                    } else {
+                        altOverlay.innerText = '';
+                        altOverlay.style.display = 'none';
+                    }
+                }
+
                 const dots = document.querySelectorAll('#carousel-dots-1 .dot');
                 dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentIndex1));
             }
@@ -690,6 +712,16 @@ the upholstery of a bench.
                 const dots = document.querySelectorAll('#carousel-dots-2 .dot');
                 dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentIndex2));
             }
+        }
+
+        // Sur mobile : clique sur l'image pour changer. Sur desktop : ouvre la lightbox.
+        function handleCarouselClick(carNum) {
+            if (window.innerWidth <= 768) {
+                nextImage(carNum);
+            } else {
+                openLightbox(carNum);
+            }
+        }
         }
 
         function nextImage(carNum) {
